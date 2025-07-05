@@ -12,6 +12,11 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+
+    body::-webkit-scrollbar {
+        display: none;
+        color: transparent;
+}
     
     /* Navbar Styles */
     .main-nav {
@@ -144,7 +149,9 @@
     /* Feature Section */
     .feature-section {
       display: flex;
+      align-items: center;
       justify-content: center;
+      flex-direction: column;
       gap: 40px;
       padding: 120px 20px 60px;
       flex-wrap: wrap;
@@ -507,10 +514,116 @@
       100% { transform: rotate(360deg); }
     }
 
+    .agentforce-badge {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background: #dee8ff;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .agentforce-badge::before {
+        content: "";
+        position: absolute;
+        inset: -10px 100px;
+        background: linear-gradient(315deg, #1ea7ff, #72277a);
+        transition: .5s;
+        animation: badgeRotate 4s linear infinite;
+    }
+
+    @keyframes badgeRotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .agentforce-badge::after {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        background: #fff;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .content {
+        position: absolute;
+        inset: 30px;
+        border: 6px solid #dee8ff;
+        z-index: 3;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .agentforce-badge:hover::before {
+        inset: -20px 0px;
+    }
+
+    .content img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .agentforce-badge:hover .content img {
+        opacity: 0;
+    }
+
+    .content h2 {
+        position: relative;
+        font-size: 1.5rem;
+        text-align: center;
+        color: #003f88;
+        font-weight: 700;
+    }
+
+    .content h2 span {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .content a {
+        position: relative;
+        margin-top: 10px;
+        padding: 5px 10px;
+        background: #0074cc;
+        color: #fff;
+        border-radius: 25px;
+        font-weight: 500;
+        font-size: 0.68rem;
+        letter-spacing: 0.05rem;
+        text-decoration: none;
+        transition: .5s;
+    }
+
+    .content a:hover {
+        letter-spacing: 0.02rem;
+    }
+
+
     /* Responsive Adjustments */
     @media (max-width: 1100px) {
       .feature {
         min-width: 400px;
+      }
+
+      .platform {
+        width: 67%;
       }
       
       .agentforce-layer {
@@ -555,16 +668,28 @@
       }
       
       .label.agentforce {
-        top: 160px;
+        top: 90px;
       }
       
       .label.customer360 {
-        top: 200px;
+        top: 140px;
       }
       
       .label.datacloud {
-        top: 240px;
+        top: 189px;
       }
+
+      .blue  { background: #00beff; box-shadow: 0 0 6px #00beff; top: 40px; left: 13px; }
+    .pink  { background: #d262fa; box-shadow: 0 0 6px #d262fa; top: 27.5px; left: 21px; }
+    .lime  { background: #03c949; box-shadow: 0 0 6px #03c949; top: 16px; left: 33px; }
+    .purple{ background: #72277a; box-shadow: 0 0 6px #72277a; top: 8px; left: 49px; }
+    .green { background: #01e8cd; box-shadow: 0 0 6px #01e8cd; top: 2px; left: 65.5px; }
+    .coral { background: #ff81a9; box-shadow: 0 0 6px #ff81a9; top: 0.5px; left: 86px; }
+    .orange{ background: #fd8d13; box-shadow: 0 0 6px #fd8d13; top: 3px; left: 107px; }
+    .cyan  { background: #059bf7; box-shadow: 0 0 6px #059bf7; top: 8px; left: 124px; }
+    .red   { background: #fc5000; box-shadow: 0 0 6px #fc5000; top: 16px; left: 137px; }
+    .indigo{ background: #02a79e; box-shadow: 0 0 6px #02a79e; top: 27.5px; left: 149px; }
+    .yellow{ background: #fec200; box-shadow: 0 0 6px #fec200; top: 40px; left: 159px; }
     }
 
     @media (max-width: 900px) {
@@ -577,6 +702,20 @@
         width: 100%;
         max-width: 600px;
       }
+      .label.agentforce {
+        top: 100px;
+        font-size: 13px;
+      }
+      
+      .label.customer360 {
+        top: 140px;
+        font-size: 13px;
+      }
+      
+      .label.datacloud {
+        top: 190px;
+        font-size: 13px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -586,6 +725,10 @@
       
       .feature-animation {
         height: 280px;
+      }
+
+      .platform {
+        width: 70%;
       }
       
       .agentforce-layer {
@@ -625,7 +768,7 @@
       }
       
       .dots-ring {
-        width: 180px;
+        width: 90px;
         height: 90px;
       }
       
@@ -645,17 +788,77 @@
       }
       
       .label.agentforce {
-        top: 150px;
-        font-size: 14px;
+        top: 130px;
+        font-size: 11px;
       }
       
       .label.customer360 {
-        top: 160px;
-        font-size: 14px;
+        top: 165px;
+        font-size: 11px;
       }
       
       .label.datacloud {
-        top: 190px;
-        font-size: 14px;
+        top: 200px;
+        font-size: 11px;
       }
+
+      .agentforce-badge {
+        width: 250px;
+        height: 250px;
+      }
+
+      .content h2 {
+        font-size: 1.3rem;
+      }
+      
+      .content h2 span {
+        font-size: 1rem;
+      }
+
+      .content a {
+        font-size: 0.5rem;
+      }
+    }
+    
+    @media (max-width: 478px) {
+
+        .platform {
+            width: 80%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .label.agentforce {
+          top: 130px;
+          font-size: 11px;
+        }
+        
+        .label.customer360 {
+          top: 165px;
+          font-size: 11px;
+        }
+        
+        .label.datacloud {
+          top: 200px;
+          font-size: 11px;
+        }
+
+    .blue  { background: #00beff; box-shadow: 0 0 5px #00beff; top: 33px; left: 8.5px; }
+    .pink  { background: #d262fa; box-shadow: 0 0 5px #d262fa; top: 21px; left: 18px; }
+    .lime  { background: #03c949; box-shadow: 0 0 5px #03c949; top: 12px; left: 28px; }
+    .purple{ background: #72277a; box-shadow: 0 0 5px #72277a; top: 4.8px; left: 40px; }
+    .green { background: #01e8cd; box-shadow: 0 0 5px #01e8cd; top: 1.5px; left: 53px; width: 9px; height: 9px;}
+    .coral { background: #ff81a9; box-shadow: 0 0 5px #ff81a9; top: 0px; left: 65px; }
+    .orange{ background: #fd8d13; box-shadow: 0 0 5px #fd8d13; top: 1.5px; left: 80px; }
+    .cyan  { background: #059bf7; box-shadow: 0 0 5px #059bf7; top: 4.8px; left: 93px; }
+    .red   { background: #fc5000; box-shadow: 0 0 5px #fc5000; top: 12px; left: 105px; }
+    .indigo{ background: #02a79e; box-shadow: 0 0 5px #02a79e; top: 21px; left: 115px; }
+    .yellow{ background: #fec200; box-shadow: 0 0 5px #fec200; top: 33px; left: 122px; }
+    }
+
+    @media (max-width: 400px) {
+        .platform {
+            width: 80%;
+        }
     }
