@@ -844,6 +844,10 @@
           font-size: 11px;
         }
 
+         .content a {
+        font-size: 0.4rem;
+      }
+
     .blue  { background: #00beff; box-shadow: 0 0 5px #00beff; top: 33px; left: 8.5px; }
     .pink  { background: #d262fa; box-shadow: 0 0 5px #d262fa; top: 21px; left: 18px; }
     .lime  { background: #03c949; box-shadow: 0 0 5px #03c949; top: 12px; left: 28px; }
